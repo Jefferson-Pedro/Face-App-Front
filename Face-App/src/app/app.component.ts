@@ -12,6 +12,9 @@ export class AppComponent implements OnInit{
   @ViewChild('video', { static: true })
   videoElement!: ElementRef<HTMLVideoElement>;
 
+  @ViewChild('canvas', { static: true })
+  canvasElement!: ElementRef<HTMLCanvasElement>;
+
   ngOnInit(): void {
     this.initCam();
   }
@@ -33,5 +36,21 @@ export class AppComponent implements OnInit{
 
   public takePicture(){
     const video = this.videoElement?.nativeElement;
+    const canvas = this.canvasElement?.nativeElement;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const urlImage = canvas.toDataURL('image/png');
+
+      const linkDonwload = document.createElement('a');
+      linkDonwload.href = urlImage;
+      linkDonwload.download = 'foto.png';
+      linkDonwload.click();
+
+      console.log(urlImage);
+      console.log('Foto tirada com sucesso!');
+    }
   }
 }
