@@ -1,3 +1,15 @@
-<video #video width="640" height="480" autoplay="autoplay"></video>
-<canvas #canvas style="display: none;"></canvas>
-<button (click)="takePicture()">Tirar Foto</button>
+<div class="camera-container">
+  <video #video autoplay></video>
+
+  <!-- Overlay -->
+  <div class="face-overlay">
+    <div class="face-frame"></div>
+  </div>
+
+  <button class="capture-btn" (click)="takePicture()">
+    Tirar Foto
+  </button>
+</div>
+
+<canvas #canvas></canvas>
+
