@@ -16,21 +16,23 @@
 
       <h2>Faça login na sua conta</h2>
 
-      <form>
+      <form [formGroup]="formLogin">
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Endereço de e-mail</mat-label>
-          <input matInput type="email" />
+          <input matInput type="email" formControlName="email">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Senha</mat-label>
-          <input matInput type="password" />
+          <input matInput type="password" formControlName="password" />
         </mat-form-field>
 
         <button
           mat-raised-button
           color="primary"
-          class="login-btn full-width">
+          class="login-btn full-width"
+          (click)="login()">
           LOGAR
         </button>
       </form>
