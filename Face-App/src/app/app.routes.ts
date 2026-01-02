@@ -16,6 +16,20 @@ export const routes: Routes = [
       loadComponent: () =>
         import('./features/login/login.component')
           .then(c => c.LoginComponent)
-    }
+    },
+
+    {
+      path: 'register',
+      loadComponent: () =>
+        import('./features/register/register.component')
+          .then(c => c.RegisterComponent)
+    },
+
+    {
+      path: 'face-recognition',
+      loadComponent: () =>
+        import('./features/camera-capture/camera-capture.component')
+          .then(c => c.CameraCaptureComponent)
+    },
 
 ];
