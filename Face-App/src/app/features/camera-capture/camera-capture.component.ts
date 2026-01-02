@@ -53,5 +53,4 @@ export class CameraCaptureComponent implements OnInit {
       console.log('Foto tirada com sucesso!');
     }
   }
-
 }

@@ -13,7 +13,7 @@ export class AuthService {
   private http = inject(HttpClient);
 
   public login(login: UserLoginRequest) {
-    const url = `${environment.baseUrl}/users/login`;
+    const url = `${environment.baseUrl}/user/login`;
 
     return this.http.post(url, login);
   }

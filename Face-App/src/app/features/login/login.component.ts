@@ -42,7 +42,7 @@ export class LoginComponent {
   };
 
   this.authService.login(this.loginUser).subscribe(() => {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/face-recognition']);
   });
 }
 
