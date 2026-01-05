@@ -1,1 +1,121 @@
-<p>register works!</p>
+<div class="register-wrapper">
+  <mat-card class="register-card">
+
+    <!-- Lado esquerdo: imagem -->
+    <div class="register-image">
+      <img src="/assets/register.png" alt="Ilustração de cadastro" />
+    </div>
+
+    <!-- Lado direito: formulário -->
+    <div class="register-form">
+
+      <div class="logo">
+        <mat-icon>apps</mat-icon>
+        <span>Logotipo</span>
+      </div>
+
+      <h2>Crie sua conta</h2>
+
+      <form [formGroup]="formRegister">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome Completo</mat-label>
+          <input matInput type="text" formControlName="nome">
+            <mat-error *ngIf="formRegister.get('nome')?.hasError('required')">
+              Nome é obrigatório
+            </mat-error>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>CPF</mat-label>
+            <input matInput type="text" formControlName="cpf" mask="000.000.000-00">
+            <mat-error *ngIf="formRegister.get('cpf')?.hasError('required')">
+              CPF é obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Telefone</mat-label>
+            <input matInput type="text" formControlName="telefone" mask="(00) 00000-0000">
+            <mat-error *ngIf="formRegister.get('telefone')?.hasError('required')">
+              Telefone é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="formRegister.get('email')?.hasError('required')">
+            E-mail é obrigatório
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('email')?.hasError('email')">
+            E-mail inválido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Login</mat-label>
+          <input matInput type="text" formControlName="login">
+          <mat-error *ngIf="formRegister.get('login')?.hasError('required')">
+            Login é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="senha">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formRegister.get('senha')?.hasError('required')">
+            Senha é obrigatória
+          </mat-error>
+          <mat-error *ngIf="formRegister.get('senha')?.hasError('minlength')">
+            Senha deve ter no mínimo 6 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirmar Senha</mat-label>
+          <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmarSenha">
+          <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formRegister.get('confirmarSenha')?.hasError('required')">
+            Confirme sua senha
+          </mat-error>
+          <mat-error *ngIf="formRegister.hasError('passwordMismatch')">
+            As senhas não coincidem
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="register-btn full-width"
+          (click)="register()"
+          [disabled]="formRegister.invalid">
+          CADASTRAR
+        </button>
+      </form>
+
+      <div class="links">
+        <span>
+          Já tem uma conta?
+          <a href="/login">Faça login aqui</a>
+        </span>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="footer">
+        <a href="#">Termos de uso</a>
+        ·
+        <a href="#">Política de privacidade</a>
+      </div>
+
+    </div>
+  </mat-card>
+</div>f

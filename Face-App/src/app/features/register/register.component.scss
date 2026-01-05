@@ -1,0 +1,242 @@
+/* Remove scroll do body quando a página de cadastro está ativa */
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.register-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #9b646f;
+  padding: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.register-card {
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  max-width: 95%;
+  max-height: calc(100vh - 40px); /* Garante que não ultrapasse a tela */
+  padding: 0;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Painel da imagem */
+.register-image {
+  flex: 0 0 50%;
+  min-height: 580px;
+  background: #eee;
+  border-radius: 16px 0 0 16px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 16px 0 0 16px;
+  }
+}
+
+/* Painel do formulário */
+.register-form {
+  flex: 0 0 50%;
+  background: #424242;
+  color: #fff;
+  padding: 40px 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 16px 16px 0;
+  overflow-y: auto; /* Permite scroll interno se necessário */
+  overflow-x: visible;
+
+  h2 {
+    margin: 12px 0 24px;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 2px;
+
+  mat-icon {
+    color: #ff9800;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Form container */
+form {
+  margin-bottom: 18px;
+}
+
+/* Inputs - ESPAÇO MAIOR É CRUCIAL */
+.full-width {
+  width: 100%;
+  margin-bottom: 18px;
+
+  &:last-of-type {
+    margin-bottom: 16px;
+  }
+}
+
+/* Row para campos lado a lado */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+
+  .half-width {
+    flex: 1;
+  }
+}
+
+/* Força os campos do Material a terem espaço adequado */
+::ng-deep .register-form {
+  .mat-mdc-form-field {
+    display: block;
+
+    .mat-mdc-text-field-wrapper {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      background-color: transparent;
+    }
+
+    /* Garante espaço para a label flutuante */
+    .mat-mdc-form-field-subscript-wrapper {
+      margin-top: 0;
+    }
+  }
+
+  /* Remove margens negativas que podem causar cortes */
+  .mat-mdc-form-field-infix {
+    padding-top: 16px;
+    padding-bottom: 8px;
+  }
+}
+
+/* Botão */
+.register-btn {
+  margin-top: 4px;
+  height: 46px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+/* Links */
+.links {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+
+  a {
+    color: #90caf9;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Divider */
+mat-divider {
+  margin: 20px 0;
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Rodapé */
+.footer {
+  font-size: 12px;
+  color: #ccc;
+  text-align: center;
+  padding-top: 4px;
+  line-height: 1.8;
+
+  a {
+    color: #ccc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ================ RESPONSIVIDADE ================ */
+
+@media (max-width: 768px) {
+  .register-wrapper {
+    padding: 20px 10px;
+  }
+
+  .register-card {
+    flex-direction: column;
+  }
+
+  .register-image {
+    flex: 0 0 250px;
+    min-height: 250px;
+    border-radius: 16px 16px 0 0;
+
+    img {
+      border-radius: 16px 16px 0 0;
+    }
+  }
+
+  .register-form {
+    flex: 1;
+    padding: 40px 28px;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-wrapper {
+    padding: 10px;
+  }
+
+  .register-image {
+    display: none;
+  }
+
+  .register-form {
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+}
