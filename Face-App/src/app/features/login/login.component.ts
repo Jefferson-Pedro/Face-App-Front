@@ -28,22 +28,28 @@ export class LoginComponent {
   });
 
   public login() {
-  const formValue = this.formLogin.value;
+    const formValue = this.formLogin.value;
 
-  // Valida se email e password existem e não estão vazios
-  if (!formValue.email || !formValue.password) {
-    console.error('Email e senha são obrigatórios');
-    return;  // Para a execução aqui
+    // Valida se email e password existem e não estão vazios
+    if (!formValue.email || !formValue.password) {
+      console.error('Email e senha são obrigatórios');
+      return;  // Para a execução aqui
+    }
+
+    this.loginUser = {
+      login: formValue.email,
+      senha: formValue.password
+    };
+
+    this.authService.login(this.loginUser).subscribe({
+      next: (response) => {
+        console.log('Login bem-sucedido:', response);
+        // Redireciona para a página de reconhecimento facial após o login bem-sucedido
+      this.router.navigate(['/face-recognition']);
+      },
+      error: (error) => {
+        console.error('Erro ao fazer login:', error);
+      }
+    });
   }
-
-  this.loginUser = {
-    login: formValue.email,
-    senha: formValue.password
-  };
-
-  this.authService.login(this.loginUser).subscribe(() => {
-    this.router.navigate(['/face-recognition']);
-  });
-}
-
 }
