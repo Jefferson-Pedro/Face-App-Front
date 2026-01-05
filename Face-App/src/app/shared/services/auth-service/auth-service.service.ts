@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { UserLoginRequest } from '../../../core/models/UserLoginRequest';
+import { UserRequest } from '../../../core/models/UserRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,11 @@ export class AuthService {
     const url = `${environment.baseUrl}/user/login`;
 
     return this.http.post(url, login);
+  }
+
+  public register(newUser: UserRequest){
+    const url = `${environment.baseUrl}/user/new`;
+
+    return this.http.post(url, newUser, { responseType: 'text' });
   }
 }
